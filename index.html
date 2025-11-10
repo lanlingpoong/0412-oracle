@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Since 0412 — Cyber Fortune</title>
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: radial-gradient(circle at center, #ececec, #d2d2d2);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    /* Chrome vertical card */
+    .card {
+        width: 100%;
+        background: linear-gradient(180deg, #f6f6f6 0%, #e1e1e1 50%, #f5f5f5 100%);
+        padding: 40px 25px;
+        border-radius: 22px;
+        box-shadow:
+            0px 4px 18px rgba(0,0,0,0.15),
+            inset 0 0 12px rgba(255,255,255,0.6),
+            inset 0 0 22px rgba(200,200,200,0.4);
+        backdrop-filter: blur(8px);
+    }
+
+    .icon-ring {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px auto;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fefefe 0%, #dcdcdc 60%, #bcbcbc 100%);
+        border: 4px solid #ffffff;
+        box-shadow: inset 0 0 12px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .title {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-top: 8px;
+        margin-bottom: 6px;
+    }
+
+    .fortune {
+        font-size: 16px;
+        color: #444;
+        line-height: 1.45;
+        margin-bottom: 26px;
+        padding: 0 10px;
+    }
+
+    .code {
+        margin-top: 35px;
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: #222;
+    }
+
+    .footer-tag {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #555;
+        letter-spacing: 1px;
+    }
+
+    /* Bottom bar */
+    .bar {
+        width: 100%;
+        margin-top: 18px;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Chrome pill button */
+    .btn {
+        background: linear-gradient(180deg, #ffffff 0%, #e6e6e6 50%, #cfcfcf 100%);
+        padding: 10px 24px;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,0.7);
+        box-shadow:
+            0px 2px 10px rgba(0,0,0,0.15),
+            inset 0px 0px 10px rgba(255,255,255,0.8);
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .btn:hover {
+        box-shadow:
+            0px 3px 14px rgba(0,0,0,0.22),
+            inset 0px 0px 14px rgba(255,255,255,1);
+        transform: translateY(-2px);
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <div class="icon-ring"></div>
+
+        <div class="title">CYBER FORTUNE</div>
+
+        <div class="fortune" id="fortuneText">Your digital fate awaits...</div>
+
+        <div class="code" id="codeText">CODE: —</div>
+        <div class="footer-tag">Since 0412</div>
+    </div>
+
+    <div class="bar">
+        <button class="btn" onclick="draw()">New Draw</button>
+    </div>
+
+</div>
+
+<script>
+    function draw() {
+        // random 4-digit code
+        const code = Math.floor(1000 + Math.random() * 9000);
+        document.getElementById("codeText").innerHTML = "CODE: " + code;
+
+        // load a random card from /cards/
+        const maxCards = 300; // when you're ready
+        const n = Math.floor(Math.random() * 10) + 1; // currently 001-010 available
+        const padded = String(n).padStart(3,'0');
+        const path = "/cards/" + padded + ".png";
+
+        // replace fortune text with image
+        document.getElementById("fortuneText").innerHTML =
+            <img src="${path}" style="width:100%; border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,0.18);" />;
+    }
+</script>
+
+</body>
+</html>
